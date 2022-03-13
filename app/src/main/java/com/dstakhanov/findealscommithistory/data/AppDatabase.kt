@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.dstakhanov.findealscommithistory.data.info.InstrumentInfoDao
 import com.dstakhanov.findealscommithistory.data.item.InstrumentItemDbModel
 import com.dstakhanov.findealscommithistory.data.item.InstrumentListDao
 
@@ -11,6 +12,7 @@ import com.dstakhanov.findealscommithistory.data.item.InstrumentListDao
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun instrumentListDao(): InstrumentListDao
+    abstract fun instrumentPriceInfoDao(): InstrumentInfoDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
