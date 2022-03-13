@@ -2,7 +2,7 @@ package com.dstakhanov.findealscommithistory.domain
 
 import androidx.lifecycle.LiveData
 
-interface InstrumentItemRepository {
+interface InstrumentListRepository {
 
     suspend fun addInstrumentItem(instrumentItem: InstrumentItem)
 
