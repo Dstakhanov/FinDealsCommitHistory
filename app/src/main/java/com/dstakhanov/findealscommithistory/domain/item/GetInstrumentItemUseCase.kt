@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory.domain
+package com.dstakhanov.findealscommithistory.domain.item
 
 
 class GetInstrumentItemUseCase constructor(
