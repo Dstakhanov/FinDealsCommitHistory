@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory.ui.slideshow
+package com.dstakhanov.findealscommithistory.presentation.ui.slideshow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

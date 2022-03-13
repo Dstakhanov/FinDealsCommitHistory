@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_price_list.xml" value="0.20855379188712522" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_instrument_detail.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_instrument_price_list.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_main.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/app_bar_main.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/content_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_detail.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_info.xml" value="0.23550724637681159" />
       </map>
     </option>
   </component>

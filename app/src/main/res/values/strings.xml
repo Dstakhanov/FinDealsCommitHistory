@@ -10,4 +10,13 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="symbols_template">%s / %s</string>
+    <string name="last_update_template">Время последнего обновления: %s</string>
+    <string name="slash">/</string>
+    <string name="price_label">Цена:</string>
+    <string name="min_price_label">Минимум за день:</string>
+    <string name="max_price_label">Максимум за день:</string>
+    <string name="last_market_label">Последняя сделка:</string>
+    <string name="last_updated_label">Обновлено:</string>
 </resources>

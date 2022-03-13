@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory
+package com.dstakhanov.findealscommithistory.presentation
 
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
