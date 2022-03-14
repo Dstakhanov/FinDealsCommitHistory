@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.dstakhanov.findealscommithistory.R
-import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentPriceListBinding
+import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentInfoPriceListBinding
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.dstakhanov.findealscommithistory.presentation.info.adapters.InstrumentInfoAdapter
@@ -16,7 +16,7 @@ class InstrumentInfoPriceListActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by lazy{
-        ActivityInstrumentPriceListBinding.inflate(layoutInflater)
+        ActivityInstrumentInfoPriceListBinding.inflate(layoutInflater)
     }
 
 

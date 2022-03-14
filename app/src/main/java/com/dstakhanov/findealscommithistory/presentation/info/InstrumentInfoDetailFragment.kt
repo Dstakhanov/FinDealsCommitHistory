@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentDetailBinding
+import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoDetailBinding
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.squareup.picasso.Picasso
 
@@ -18,8 +18,8 @@ class InstrumentInfoDetailFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
 
-    private var _binding: FragmentInstrumentDetailBinding? = null
-    private val binding: FragmentInstrumentDetailBinding
+    private var _binding: FragmentInstrumentInfoDetailBinding? = null
+    private val binding: FragmentInstrumentInfoDetailBinding
         get() = _binding ?: throw RuntimeException("FragmentInstrumentDetailBinding is null")
 
 
@@ -32,7 +32,7 @@ class InstrumentInfoDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInstrumentDetailBinding.inflate(
+        _binding = FragmentInstrumentInfoDetailBinding.inflate(
             inflater, container, false
         )
         return binding.root

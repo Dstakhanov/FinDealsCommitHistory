@@ -5,13 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dstakhanov.findealscommithistory.R
-import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentDetailBinding
+import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentInfoDetailBinding
 
 class InstrumentInfoDetailActivity : AppCompatActivity() {
 
 
     private val binding by lazy {
-        ActivityInstrumentDetailBinding.inflate(layoutInflater)
+        ActivityInstrumentInfoDetailBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
