@@ -2,7 +2,6 @@ package com.dstakhanov.findealscommithistory.di
 
 import android.app.Application
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
-import com.dstakhanov.findealscommithistory.presentation.MainActivity
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoDetailFragment
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListActivity
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment
@@ -14,7 +13,8 @@ import dagger.Component
 @Component(
     modules = [
         DataModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        WorkerModule::class
     ]
 )
 interface ApplicationComponent {

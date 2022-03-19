@@ -41,8 +41,8 @@ class InstrumentInfoPriceListActivity : AppCompatActivity() {
                     }
                 }
             }
-        binding.rvInstrumentPriceList?.adapter = adapter
-        binding.rvInstrumentPriceList?.itemAnimator = null
+        binding.rvInstrumentPriceList.adapter = adapter
+        binding.rvInstrumentPriceList.itemAnimator = null
         infoViewModel =
             ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
         infoViewModel.instrumentInfoList.observe(this) {

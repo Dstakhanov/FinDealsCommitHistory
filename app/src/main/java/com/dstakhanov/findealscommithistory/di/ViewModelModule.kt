@@ -1,6 +1,7 @@
 package com.dstakhanov.findealscommithistory.di
 
 import androidx.lifecycle.ViewModel
+import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoViewModel
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemMainViewModel
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemViewModel
 import dagger.Binds
@@ -12,10 +13,15 @@ interface ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(InstrumentItemMainViewModel::class)
-    fun bindMainViewModel(viewModel: InstrumentItemMainViewModel): ViewModel
+    fun bindInstrumentItemMainViewModel(viewModel: InstrumentItemMainViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(InstrumentItemViewModel::class)
-    fun bindShopItemViewModel(viewModel: InstrumentItemViewModel): ViewModel
+    fun bindInstrumentItemViewModel(viewModel: InstrumentItemViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InstrumentInfoViewModel::class)
+    fun bindInstrumentInfoViewModel(viewModel:InstrumentInfoViewModel): ViewModel
 }
