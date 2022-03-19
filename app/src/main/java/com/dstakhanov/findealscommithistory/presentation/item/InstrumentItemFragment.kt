@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemBinding
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
+import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class InstrumentItemFragment: Fragment() {
 
@@ -26,10 +28,14 @@ class InstrumentItemFragment: Fragment() {
     private var screenMode: String = MODE_UNKNOWN
     private var instrumentItemId: Int = InstrumentItem.UNDEFINED_ID
 
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-
+    private val component by lazy{
+        (requireActivity().application as InstrumentApp).component
+    }
     override fun onAttach(context: Context) {
+        component.inject(this)
         super.onAttach(context)
         if(context is OnEditingFinishedListener){
             onEditingFinishedListener = context

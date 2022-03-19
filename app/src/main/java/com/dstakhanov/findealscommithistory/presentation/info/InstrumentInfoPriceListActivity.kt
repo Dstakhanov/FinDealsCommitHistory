@@ -6,21 +6,27 @@ import androidx.lifecycle.ViewModelProvider
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentInfoPriceListBinding
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
+import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.dstakhanov.findealscommithistory.presentation.info.adapters.InstrumentInfoAdapter
+import javax.inject.Inject
 
 class InstrumentInfoPriceListActivity : AppCompatActivity() {
 
     private lateinit var infoViewModel: InstrumentInfoViewModel
 
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by lazy{
         ActivityInstrumentInfoPriceListBinding.inflate(layoutInflater)
     }
 
-
+    private val component by lazy {
+        (application as InstrumentApp).component
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val adapter = InstrumentInfoAdapter(this)

@@ -1,7 +1,9 @@
 package com.dstakhanov.findealscommithistory.domain.info
 
-class LoadDataUseCase constructor(
+import javax.inject.Inject
+
+class LoadDataUseCase @Inject constructor(
     private val instrumentInfoRepository: InstrumentInfoRepository
 ) {
-    operator fun invoke() = instrumentInfoRepository.loadData()
+    suspend operator fun invoke() = instrumentInfoRepository.loadData()
 }

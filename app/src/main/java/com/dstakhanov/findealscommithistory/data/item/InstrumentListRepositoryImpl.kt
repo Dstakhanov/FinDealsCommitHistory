@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentListRepository
+import javax.inject.Inject
 
-class InstrumentListRepositoryImpl constructor(
+class InstrumentListRepositoryImpl @Inject constructor(
     private val instrumentListDao: InstrumentListDao,
     private val mapper: InstrumentListMapper
 ) : InstrumentListRepository {

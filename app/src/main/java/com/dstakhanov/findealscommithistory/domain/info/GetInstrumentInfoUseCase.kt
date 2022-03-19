@@ -1,6 +1,8 @@
 package com.dstakhanov.findealscommithistory.domain.info
 
-class GetInstrumentInfoUseCase constructor(
+import javax.inject.Inject
+
+class GetInstrumentInfoUseCase @Inject constructor(
     private val instrumentInfoRepository: InstrumentInfoRepository
 ) {
     operator fun invoke(fromSymbol: String) =

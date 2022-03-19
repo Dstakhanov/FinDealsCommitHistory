@@ -8,15 +8,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoDetailBinding
+import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class InstrumentInfoDetailFragment : Fragment() {
 
     private lateinit var infoViewModel: InstrumentInfoViewModel
 
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    private val component by lazy {
+        (requireActivity().application as InstrumentApp).component
+    }
 
     private var _binding: FragmentInstrumentInfoDetailBinding? = null
     private val binding: FragmentInstrumentInfoDetailBinding
@@ -24,6 +30,7 @@ class InstrumentInfoDetailFragment : Fragment() {
 
 
     override fun onAttach(context: Context) {
+        component.inject(this)
         super.onAttach(context)
     }
 

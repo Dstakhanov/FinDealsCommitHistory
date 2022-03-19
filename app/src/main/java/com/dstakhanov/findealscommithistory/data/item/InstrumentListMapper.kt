@@ -1,8 +1,9 @@
 package com.dstakhanov.findealscommithistory.data.item
 
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
+import javax.inject.Inject
 
-class InstrumentListMapper {
+class InstrumentListMapper @Inject constructor(){
 
     fun mapEntityToDbModel(instrumentItem: InstrumentItem) = InstrumentItemDbModel(
         id = instrumentItem.id,

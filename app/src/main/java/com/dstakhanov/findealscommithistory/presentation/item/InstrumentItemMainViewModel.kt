@@ -7,8 +7,9 @@ import com.dstakhanov.findealscommithistory.domain.item.EditInstrumentItemUseCas
 import com.dstakhanov.findealscommithistory.domain.item.GetInstrumentListUseCase
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class InstrumentItemMainViewModel constructor(
+class InstrumentItemMainViewModel @Inject constructor(
     private val getInstrumentListUseCase: GetInstrumentListUseCase,
     private val deleteInstrumentItemUseCase: DeleteInstrumentItemUseCase,
     private val editInstrumentItemUseCase: EditInstrumentItemUseCase

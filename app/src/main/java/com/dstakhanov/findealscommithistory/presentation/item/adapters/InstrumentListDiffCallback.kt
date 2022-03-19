@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory.presentation.item
+package com.dstakhanov.findealscommithistory.presentation.item.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem

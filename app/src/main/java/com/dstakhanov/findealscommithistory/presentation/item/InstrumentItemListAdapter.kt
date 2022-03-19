@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
+import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemDiffCallback
+import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemViewHolder
 
 class InstrumentItemListAdapter :
     ListAdapter<InstrumentItem, InstrumentItemViewHolder>(InstrumentItemDiffCallback()) {

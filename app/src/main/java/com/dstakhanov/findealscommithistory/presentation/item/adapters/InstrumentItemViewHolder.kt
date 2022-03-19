@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory.presentation.item
+package com.dstakhanov.findealscommithistory.presentation.item.adapters
 
 import android.view.View
 import android.widget.TextView

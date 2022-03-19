@@ -8,8 +8,9 @@ import com.google.gson.Gson
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class InstrumentInfoMapper constructor() {
+class InstrumentInfoMapper @Inject constructor(){
 
     fun mapDtoToDbModel(dto: InstrumentInfoDto) = InstrumentInfoDbModel(
         fromSymbol = dto.fromSymbol,

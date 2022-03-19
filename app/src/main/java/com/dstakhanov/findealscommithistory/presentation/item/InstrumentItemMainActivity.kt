@@ -9,17 +9,22 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentItemMainBinding
+import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import javax.inject.Inject
 
 class InstrumentItemMainActivity : AppCompatActivity(), InstrumentItemFragment.OnEditingFinishedListener {
     private lateinit var viewModel: InstrumentItemMainViewModel
     private lateinit var instrumentListAdapter: InstrumentItemListAdapter
     private lateinit var binding: ActivityInstrumentItemMainBinding
 
-
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
+    private val component by lazy{
+        (application as InstrumentApp).component
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
