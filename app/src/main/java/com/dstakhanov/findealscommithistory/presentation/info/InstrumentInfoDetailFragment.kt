@@ -48,7 +48,8 @@ class InstrumentInfoDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fromSymbol = getSymbol()
-        infoViewModel = ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
+        infoViewModel =
+            ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
         infoViewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner) {
             with(binding) {
                 tvPrice.text = it.price

@@ -3,10 +3,10 @@ package com.dstakhanov.findealscommithistory.presentation.item.adapters
 import androidx.recyclerview.widget.DiffUtil
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 
-class InstrumentListDiffCallback (
+class InstrumentListDiffCallback(
     private val oldList: List<InstrumentItem>,
     private val newList: List<InstrumentItem>,
-): DiffUtil.Callback() {
+) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

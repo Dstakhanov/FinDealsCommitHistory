@@ -8,6 +8,6 @@ interface InstrumentInfoRepository {
 
     fun getInstrumentInfo(fromSymbol: String): LiveData<InstrumentInfo>
 
-    suspend fun loadData()
+    fun loadData()
 
 }

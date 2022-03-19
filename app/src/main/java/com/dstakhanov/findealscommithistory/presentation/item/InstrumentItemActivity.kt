@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 
-class InstrumentItemActivity : AppCompatActivity(), InstrumentItemFragment.OnEditingFinishedListener {
+class InstrumentItemActivity : AppCompatActivity(),
+    InstrumentItemFragment.OnEditingFinishedListener {
 
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = InstrumentItem.UNDEFINED_ID
@@ -17,7 +18,7 @@ class InstrumentItemActivity : AppCompatActivity(), InstrumentItemFragment.OnEdi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instrument_item)
         parseIntent()
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             launchRightMode()
         }
     }

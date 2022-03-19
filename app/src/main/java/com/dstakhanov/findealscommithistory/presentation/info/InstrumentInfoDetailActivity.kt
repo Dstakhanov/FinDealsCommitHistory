@@ -25,7 +25,10 @@ class InstrumentInfoDetailActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container, InstrumentInfoDetailFragment.newInstance(fromSymbol))
+                .replace(
+                    R.id.fragment_container,
+                    InstrumentInfoDetailFragment.newInstance(fromSymbol)
+                )
                 .commit()
         }
     }

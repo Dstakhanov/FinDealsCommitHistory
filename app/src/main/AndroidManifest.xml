@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dstakhanov.findealscommithistory">
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -37,6 +38,12 @@
             android:name=".presentation.item.InstrumentItemMainActivity"
             android:exported="false">
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="androidx.work.WorkManagerInitializer"
+            tools:node="remove"
+            tools:replace="android:authorities" />
     </application>
 
 </manifest>

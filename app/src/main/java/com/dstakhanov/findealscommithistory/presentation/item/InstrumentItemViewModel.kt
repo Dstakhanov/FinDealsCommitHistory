@@ -108,6 +108,7 @@ class InstrumentItemViewModel @Inject constructor(
             0.0
         }
     }
+
     private fun parseDate(inputDate: String?): Long {
         return try {
             inputDate?.trim()?.toLong() ?: 0

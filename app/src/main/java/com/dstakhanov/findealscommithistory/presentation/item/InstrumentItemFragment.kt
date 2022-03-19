@@ -16,14 +16,14 @@ import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import javax.inject.Inject
 
-class InstrumentItemFragment: Fragment() {
+class InstrumentItemFragment : Fragment() {
 
     private lateinit var mainViewModel: InstrumentItemViewModel
     private lateinit var onEditingFinishedListener: OnEditingFinishedListener
 
     private var _binding: FragmentInstrumentItemBinding? = null
     private val binding: FragmentInstrumentItemBinding
-        get() = _binding?: throw RuntimeException("FragmentInstrumentItemBinding == null")
+        get() = _binding ?: throw RuntimeException("FragmentInstrumentItemBinding == null")
 
     private var screenMode: String = MODE_UNKNOWN
     private var instrumentItemId: Int = InstrumentItem.UNDEFINED_ID
@@ -31,15 +31,16 @@ class InstrumentItemFragment: Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy{
+    private val component by lazy {
         (requireActivity().application as InstrumentApp).component
     }
+
     override fun onAttach(context: Context) {
         component.inject(this)
         super.onAttach(context)
-        if(context is OnEditingFinishedListener){
+        if (context is OnEditingFinishedListener) {
             onEditingFinishedListener = context
-        }else{
+        } else {
             throw RuntimeException("Activity must implement listener!")
         }
     }
@@ -60,7 +61,8 @@ class InstrumentItemFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel = ViewModelProvider(this, viewModelFactory)[InstrumentItemViewModel::class.java]
+        mainViewModel =
+            ViewModelProvider(this, viewModelFactory)[InstrumentItemViewModel::class.java]
         addTextChangeListeners()
         launchRightMode()
         observeViewModel()
@@ -169,7 +171,7 @@ class InstrumentItemFragment: Fragment() {
 
     }
 
-    interface OnEditingFinishedListener{
+    interface OnEditingFinishedListener {
         fun onEditingFinished()
     }
 

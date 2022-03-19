@@ -19,9 +19,7 @@ class InstrumentInfoViewModel @Inject constructor(
     fun getDetailInfo(fSym: String) = getInstrumentInfoUseCase(fSym)
 
     init {
-        viewModelScope.launch {
-            loadDataUseCase()
-        }
+        loadDataUseCase()
     }
 
 }

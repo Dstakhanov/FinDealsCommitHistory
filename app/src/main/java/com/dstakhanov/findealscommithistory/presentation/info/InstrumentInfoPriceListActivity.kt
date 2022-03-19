@@ -18,31 +18,34 @@ class InstrumentInfoPriceListActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val binding by lazy{
+    private val binding by lazy {
         ActivityInstrumentInfoPriceListBinding.inflate(layoutInflater)
     }
 
     private val component by lazy {
         (application as InstrumentApp).component
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val adapter = InstrumentInfoAdapter(this)
-        adapter.onInstrumentClickListener = object : InstrumentInfoAdapter.OnInstrumentClickListener {
-            override fun onInstrumentClick(instrumentPriceInfo: InstrumentInfo) {
-                if(isOnePaneMode()){
-                    launchDetailAcitivity(instrumentPriceInfo.fromSymbol)
-                }else{
-                    launchDetailFragment(instrumentPriceInfo.fromSymbol)
+        adapter.onInstrumentClickListener =
+            object : InstrumentInfoAdapter.OnInstrumentClickListener {
+                override fun onInstrumentClick(instrumentPriceInfo: InstrumentInfo) {
+                    if (isOnePaneMode()) {
+                        launchDetailAcitivity(instrumentPriceInfo.fromSymbol)
+                    } else {
+                        launchDetailFragment(instrumentPriceInfo.fromSymbol)
+                    }
                 }
             }
-        }
         binding.rvInstrumentPriceList?.adapter = adapter
         binding.rvInstrumentPriceList?.itemAnimator = null
-        infoViewModel = ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
-        infoViewModel.instrumentInfoList.observe(this)  {
+        infoViewModel =
+            ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
+        infoViewModel.instrumentInfoList.observe(this) {
             adapter.submitList(it)
         }
 
@@ -50,7 +53,7 @@ class InstrumentInfoPriceListActivity : AppCompatActivity() {
 
     private fun isOnePaneMode() = binding.fragmentContainer == null
 
-    private fun launchDetailAcitivity(fromSymbol: String){
+    private fun launchDetailAcitivity(fromSymbol: String) {
         val intent = InstrumentInfoDetailActivity.newIntent(
             this@InstrumentInfoPriceListActivity,
             fromSymbol
@@ -58,7 +61,7 @@ class InstrumentInfoPriceListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun launchDetailFragment(fromSymbol: String){
+    private fun launchDetailFragment(fromSymbol: String) {
         supportFragmentManager.popBackStack()
         supportFragmentManager
             .beginTransaction()

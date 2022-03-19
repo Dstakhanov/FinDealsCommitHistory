@@ -5,19 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
-import com.dstakhanov.findealscommithistory.data.AppDatabase
-import com.dstakhanov.findealscommithistory.data.info.network.ApiFactory
-import com.dstakhanov.findealscommithistory.data.info.network.ApiService
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfoRepository
-import kotlinx.coroutines.delay
+import com.dstakhanov.findealscommithistory.workers.RefreshDataWorker
 import javax.inject.Inject
 
 class InstrumentInfoRepositoryImpl @Inject constructor(
     private val mapper: InstrumentInfoMapper,
     private val instrumentInfoDao: InstrumentInfoDao,
-    private val application: Application,
-    private val apiService: ApiService
+    private val application: Application
 ) : InstrumentInfoRepository {
 
     override fun getInstrumentInfoList(): LiveData<List<InstrumentInfo>> {
@@ -34,18 +30,12 @@ class InstrumentInfoRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun loadData() {
-        while (true) {
-            try {
-                val topCoins = apiService.getTopInstrumentsInfo(limit = 50)
-                val fSyms = mapper.mapNamesListToString(topCoins)
-                val jsonContainer = apiService.getFullPriceList(fSyms = fSyms)
-                val coinInfoDtoList = mapper.mapJsonContainerToListInstrumentInfo(jsonContainer)
-                val dbModelList = coinInfoDtoList.map { mapper.mapDtoToDbModel(it) }
-                instrumentInfoDao.insertPriceList(dbModelList)
-            } catch (e: Exception) {
-            }
-            delay(10000)
-        }
+    override fun loadData() {
+        val workManager = WorkManager.getInstance(application)
+        workManager.enqueueUniqueWork(
+            RefreshDataWorker.NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDataWorker.makeRequest()
+        )
     }
 }

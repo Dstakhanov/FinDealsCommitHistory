@@ -25,7 +25,7 @@ interface DataModule {
     @ApplicationScope
     fun bindInstrumentRepository(impl: InstrumentInfoRepositoryImpl): InstrumentInfoRepository
 
-    companion object{
+    companion object {
         @Provides
         @ApplicationScope
         fun provideInstrumentInfoDao(
@@ -33,11 +33,13 @@ interface DataModule {
         ): InstrumentInfoDao {
             return AppDatabase.getInstance(application).instrumentPriceInfoDao()
         }
+
         @Provides
         @ApplicationScope
         fun provideApiService(): ApiService {
             return ApiFactory.apiService
         }
+
         @ApplicationScope
         @Provides
         fun provideInstrumentListDao(

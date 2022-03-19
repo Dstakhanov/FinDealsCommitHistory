@@ -9,7 +9,7 @@ import com.dstakhanov.findealscommithistory.databinding.ItemInstrumentInfoBindin
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
 import com.squareup.picasso.Picasso
 
-class InstrumentInfoAdapter (
+class InstrumentInfoAdapter(
     private val context: Context
 ) : ListAdapter<InstrumentInfo, InstrumentInfoViewHolder>(InstrumentInfoDiffCallback) {
 

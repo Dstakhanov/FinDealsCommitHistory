@@ -13,16 +13,18 @@ import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import javax.inject.Inject
 
-class InstrumentItemMainActivity : AppCompatActivity(), InstrumentItemFragment.OnEditingFinishedListener {
+class InstrumentItemMainActivity : AppCompatActivity(),
+    InstrumentItemFragment.OnEditingFinishedListener {
     private lateinit var viewModel: InstrumentItemMainViewModel
     private lateinit var instrumentListAdapter: InstrumentItemListAdapter
     private lateinit var binding: ActivityInstrumentItemMainBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    private val component by lazy{
+    private val component by lazy {
         (application as InstrumentApp).component
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
         super.onCreate(savedInstanceState)
@@ -32,7 +34,8 @@ class InstrumentItemMainActivity : AppCompatActivity(), InstrumentItemFragment.O
         setContentView(binding.root)
 
         setupRecyclerView()
-        viewModel = ViewModelProvider(this, viewModelFactory).get(InstrumentItemMainViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(InstrumentItemMainViewModel::class.java)
         viewModel.instrumentList.observe(this) {
             instrumentListAdapter.submitList(it)
         }
