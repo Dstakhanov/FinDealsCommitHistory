@@ -11,11 +11,12 @@ import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.ActivityInstrumentItemMainBinding
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemListAdapter
 import javax.inject.Inject
 
 class InstrumentItemMainActivity : AppCompatActivity(),
-    InstrumentItemFragment.OnEditingFinishedListener {
-    private lateinit var viewModel: InstrumentItemMainViewModel
+    InstrumentItemDetailFragment.OnEditingFinishedListener {
+    private lateinit var viewModel: InstrumentItemViewModel
     private lateinit var instrumentListAdapter: InstrumentItemListAdapter
     private lateinit var binding: ActivityInstrumentItemMainBinding
 
@@ -35,7 +36,7 @@ class InstrumentItemMainActivity : AppCompatActivity(),
 
         setupRecyclerView()
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(InstrumentItemMainViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(InstrumentItemViewModel::class.java)
         viewModel.instrumentList.observe(this) {
             instrumentListAdapter.submitList(it)
         }
@@ -44,7 +45,7 @@ class InstrumentItemMainActivity : AppCompatActivity(),
                 val intent = InstrumentItemActivity.newIntentAddItem(this)
                 startActivity(intent)
             } else {
-                launchFragment(InstrumentItemFragment.newInstanceAddItem())
+                launchFragment(InstrumentItemDetailFragment.newInstanceAddItem())
             }
         }
     }
@@ -109,7 +110,7 @@ class InstrumentItemMainActivity : AppCompatActivity(),
                 val intent = InstrumentItemActivity.newIntentEditItem(this, it.id)
                 startActivity(intent)
             } else {
-                launchFragment(InstrumentItemFragment.newInstanceEditItem(it.id))
+                launchFragment(InstrumentItemDetailFragment.newInstanceEditItem(it.id))
             }
         }
     }

@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/ic_add.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/side_nav_bar.xml" value="0.25092592592592594" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_info_price_list.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_item_main.xml" value="0.20855379188712522" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_price_list.xml" value="0.20855379188712522" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/fragment_instrument_info_price_list.xml" value="0.10758377425044091" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/fragment_instrument_item.xml" value="0.1" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_instrument_detail.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_instrument_info_detail.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_instrument_info_price_list.xml" value="0.1408514492753623" />
@@ -16,11 +19,20 @@
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/activity_main.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/app_bar_main.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/content_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_gallery.xml" value="0.129981884057971" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_home.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_detail.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_info_detail.xml" value="0.129981884057971" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_info_price_list.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_item.xml" value="0.22871376811594202" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_item_detail.xml" value="0.10052083333333334" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_slideshow.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_disabled.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_enabled.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_info.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/nav_header_main.xml" value="0.129981884057971" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/main.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -2,8 +2,8 @@ package com.dstakhanov.findealscommithistory.di
 
 import androidx.lifecycle.ViewModel
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoViewModel
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemMainViewModel
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemViewModel
+import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -12,13 +12,13 @@ import dagger.multibindings.IntoMap
 interface ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(InstrumentItemMainViewModel::class)
-    fun bindInstrumentItemMainViewModel(viewModel: InstrumentItemMainViewModel): ViewModel
+    @ViewModelKey(InstrumentItemViewModel::class)
+    fun bindInstrumentItemMainViewModel(viewModel: InstrumentItemViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(InstrumentItemViewModel::class)
-    fun bindInstrumentItemViewModel(viewModel: InstrumentItemViewModel): ViewModel
+    @ViewModelKey(InstrumentItemDetailViewModel::class)
+    fun bindInstrumentItemViewModel(detailViewModel: InstrumentItemDetailViewModel): ViewModel
 
     @Binds
     @IntoMap

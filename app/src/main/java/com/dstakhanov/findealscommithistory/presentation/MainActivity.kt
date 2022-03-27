@@ -1,9 +1,8 @@
 package com.dstakhanov.findealscommithistory.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
+import android.widget.Toast
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,11 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.ActivityMainBinding
 import com.dstakhanov.findealscommithistory.databinding.ContentMainBinding
-import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListActivity
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemActivity
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemMainActivity
+import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    InstrumentItemDetailFragment.OnEditingFinishedListener{
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -27,37 +25,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        setSupportActionBar(binding.appBarMain.toolbar)
-        bindingContentMain = ContentMainBinding.inflate(layoutInflater)
-        setContentView(bindingContentMain.root)
-        bindingContentMain.button.setOnClickListener {
-            val intent = Intent(this, InstrumentInfoPriceListActivity::class.java)
-            startActivity(intent)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        }
-        bindingContentMain.button2.setOnClickListener {
-            val intent = Intent(this, InstrumentItemMainActivity::class.java)
-            startActivity(intent)
-        }
-//        binding.appBarMain.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
-//        val drawerLayout: DrawerLayout = binding.drawerLayout
-//        val navView: NavigationView = binding.navView
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-//            ), drawerLayout
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
+        setSupportActionBar(binding.appBarMain.toolbar)
+
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.instrument_item_list, R.id.reports
+            ), drawerLayout
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,8 +50,13 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-//    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onEditingFinished() {
+        Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
+        supportFragmentManager.popBackStack()
+    }
 }

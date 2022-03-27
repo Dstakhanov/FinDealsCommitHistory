@@ -9,7 +9,7 @@ import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 
 class InstrumentItemActivity : AppCompatActivity(),
-    InstrumentItemFragment.OnEditingFinishedListener {
+    InstrumentItemDetailFragment.OnEditingFinishedListener {
 
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = InstrumentItem.UNDEFINED_ID
@@ -25,8 +25,8 @@ class InstrumentItemActivity : AppCompatActivity(),
 
     private fun launchRightMode() {
         val fragment = when (screenMode) {
-            MODE_EDIT -> InstrumentItemFragment.newInstanceEditItem(shopItemId)
-            MODE_ADD -> InstrumentItemFragment.newInstanceAddItem()
+            MODE_EDIT -> InstrumentItemDetailFragment.newInstanceEditItem(shopItemId)
+            MODE_ADD -> InstrumentItemDetailFragment.newInstanceAddItem()
             else -> throw RuntimeException("Unknown screen mode $screenMode")
         }
 

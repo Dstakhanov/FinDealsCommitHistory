@@ -7,19 +7,55 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.dstakhanov.findealscommithistory.presentation.ui.home.HomeFragment"
+        android:name="com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListFragment"
         android:label="@string/menu_home"
+        tools:layout="@layout/fragment_instrument_info_price_list">
+        <action
+            android:id="@+id/action_nav_home_to_instrumentInfoDetailFragment"
+            app:destination="@id/instrument_info_detail_fragment" />
+        <argument
+            android:name="fSym"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/instrument_info_detail_fragment"
+        android:name="com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoDetailFragment"
+        android:label="@string/nav_label_detail_fragment">
+        <argument
+            android:name="fSym"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/reports"
+        android:name="com.dstakhanov.findealscommithistory.presentation.ui.home.HomeFragment"
+        android:label="fragment_slideshow"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.dstakhanov.findealscommithistory.presentation.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/instrument_item_list"
+        android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment"
+        android:label="fragment_instrument_item"
+        tools:layout="@layout/fragment_instrument_item" >
+        <action
+            android:id="@+id/action_instrument_item_list_to_instrument_item_detail_fragment"
+            app:destination="@id/instrument_item_detail_fragment" />
+        <argument
+            android:name="extra_instrument_item_id"
+            app:argType="integer" />
+        <argument
+            android:name="extra_mode"
+            app:argType="string" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.dstakhanov.findealscommithistory.presentation.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/instrument_item_detail_fragment"
+        android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment"
+        android:label="fragment_instrument_item_detail"
+        tools:layout="@layout/fragment_instrument_item_detail" >
+        <argument
+            android:name="extra_instrument_item_id"
+            app:argType="integer" />
+        <argument
+            android:name="extra_mode"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

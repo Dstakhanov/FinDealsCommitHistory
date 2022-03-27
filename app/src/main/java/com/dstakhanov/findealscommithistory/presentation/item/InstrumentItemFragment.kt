@@ -1,36 +1,37 @@
 package com.dstakhanov.findealscommithistory.presentation.item
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemBinding
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemListAdapter
 import javax.inject.Inject
 
 class InstrumentItemFragment : Fragment() {
-
-    private lateinit var mainViewModel: InstrumentItemViewModel
-    private lateinit var onEditingFinishedListener: OnEditingFinishedListener
-
+    private lateinit var viewModel: InstrumentItemViewModel
+    private lateinit var instrumentListAdapter: InstrumentItemListAdapter
+    private val args by navArgs<InstrumentItemDetailFragmentArgs>()
     private var _binding: FragmentInstrumentItemBinding? = null
     private val binding: FragmentInstrumentItemBinding
-        get() = _binding ?: throw RuntimeException("FragmentInstrumentItemBinding == null")
+        get() = _binding ?: throw RuntimeException("FragmentInstrumentItemBinding is null")
 
-    private var screenMode: String = MODE_UNKNOWN
-    private var instrumentItemId: Int = InstrumentItem.UNDEFINED_ID
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     private val component by lazy {
         (requireActivity().application as InstrumentApp).component
     }
@@ -38,16 +39,6 @@ class InstrumentItemFragment : Fragment() {
     override fun onAttach(context: Context) {
         component.inject(this)
         super.onAttach(context)
-        if (context is OnEditingFinishedListener) {
-            onEditingFinishedListener = context
-        } else {
-            throw RuntimeException("Activity must implement listener!")
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseParams()
     }
 
     override fun onCreateView(
@@ -55,126 +46,114 @@ class InstrumentItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInstrumentItemBinding.inflate(inflater, container, false)
+        _binding = FragmentInstrumentItemBinding.inflate(
+            inflater, container, false
+        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel =
-            ViewModelProvider(this, viewModelFactory)[InstrumentItemViewModel::class.java]
-        addTextChangeListeners()
-        launchRightMode()
-        observeViewModel()
-    }
-
-    private fun launchRightMode() {
-        when (screenMode) {
-            MODE_EDIT -> launchEditMode()
-            MODE_ADD -> launchAddMode()
+        setupRecyclerView()
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(InstrumentItemViewModel::class.java)
+        viewModel.instrumentList.observe(this) {
+            instrumentListAdapter.submitList(it)
         }
-    }
-
-    private fun observeViewModel() {
-        mainViewModel.errorInputCount.observe(viewLifecycleOwner) {
-            val message = if (it) {
-                getString(R.string.error_input_count)
+        binding.buttonAddInstrumentItem.setOnClickListener {
+            if (isOnePaneMode()) {
+                launchOnePaneFragment(InstrumentItem.UNDEFINED_ID, MODE_ADD)
             } else {
-                null
+                launchOnePaneFragment(InstrumentItem.UNDEFINED_ID, MODE_ADD)
             }
-            binding.tilCount.error = message
+
         }
-        mainViewModel.errorInputName.observe(viewLifecycleOwner) {
-            val message = if (it) {
-                getString(R.string.error_input_name)
-            } else {
-                null
-            }
-            binding.tilName.error = message
-        }
-        mainViewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            onEditingFinishedListener.onEditingFinished()
-        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    private fun isOnePaneMode(): Boolean = getResources().getConfiguration().orientation ==
+            Configuration.ORIENTATION_PORTRAIT
+
+    private fun launchOnePaneFragment(instrumentItemId: Int, screenMode: String) {
+        findNavController().navigate(
+            InstrumentItemFragmentDirections.actionInstrumentItemListToInstrumentItemDetailFragment(
+                instrumentItemId, screenMode
+            )
+        )
+
+    }
+    private fun launchDetailFragment(fragment: Fragment, resId: Int) {
+        requireActivity().supportFragmentManager.popBackStack()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(resId, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 
-    private fun addTextChangeListeners() {
-        binding.etName.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    private fun setupRecyclerView() {
 
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                mainViewModel.resetErrorInputName()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
-        binding.etCount.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                mainViewModel.resetErrorInputCount()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
-    }
-
-    private fun launchEditMode() {
-        mainViewModel.getInstrumentItem(instrumentItemId)
-        binding.saveButton.setOnClickListener {
-            mainViewModel.editInstrumentItem(
-                binding.etName.text?.toString(),
-                binding.etCount.text?.toString(),
-                binding.etPrice.text?.toString(),
-                binding.etDate.text?.toString()
+        with(binding.rvInstrumentItemList) {
+            instrumentListAdapter = InstrumentItemListAdapter()
+            adapter = instrumentListAdapter
+            recycledViewPool.setMaxRecycledViews(
+                InstrumentItemListAdapter.VIEW_TYPE_ENABLED,
+                InstrumentItemListAdapter.MAX_POOL_SIZE
+            )
+            recycledViewPool.setMaxRecycledViews(
+                InstrumentItemListAdapter.VIEW_TYPE_DISABLED,
+                InstrumentItemListAdapter.MAX_POOL_SIZE
             )
         }
+        setupLongClickListener()
+        setupClickListener()
+        setupSwipeListener(binding.rvInstrumentItemList)
     }
-
-    private fun launchAddMode() {
-        binding.saveButton.setOnClickListener {
-            mainViewModel.addInstrumentItem(
-                binding.etName.text?.toString(),
-                binding.etCount.text?.toString(),
-                binding.etPrice.text?.toString(),
-            )
-        }
-    }
-
-    private fun parseParams() {
-        val args = requireArguments()
-        if (!args.containsKey(SCREEN_MODE)) {
-            throw RuntimeException("Param screen mode is absent")
-        }
-        val mode = args.getString(SCREEN_MODE)
-        if (mode != MODE_EDIT && mode != MODE_ADD) {
-            throw RuntimeException("Unknown screen mode $mode")
-        }
-        screenMode = mode
-        if (screenMode == MODE_EDIT) {
-            if (!args.containsKey(INSTRUMENT_ITEM_ID)) {
-                throw RuntimeException("Param instrument item id is absent")
+    private fun setupClickListener() {
+        instrumentListAdapter.onInstrumentItemClickListener = {
+            if (isOnePaneMode()) {
+                launchOnePaneFragment(it.id, MODE_EDIT)
+            } else {
+                launchDetailFragment(
+                    InstrumentItemDetailFragment.newInstanceEditItem(it.id),
+                    R.id.instrument_item_container1
+                )
             }
-            instrumentItemId = args.getInt(INSTRUMENT_ITEM_ID, InstrumentItem.UNDEFINED_ID)
         }
+    }
+    private fun setupSwipeListener(rvInstrumentList: RecyclerView) {
+        val callback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val item = instrumentListAdapter.currentList[viewHolder.adapterPosition]
+                viewModel.deleteInstrumentItem(item)
+            }
 
+        }
+        val itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(rvInstrumentList)
     }
 
-    interface OnEditingFinishedListener {
-        fun onEditingFinished()
-    }
 
+    private fun setupLongClickListener() {
+        instrumentListAdapter.onInstrumentItemLongClickListener = {
+            viewModel.changeEnableState(it)
+        }
+    }
 
     companion object {
 
@@ -184,21 +163,6 @@ class InstrumentItemFragment : Fragment() {
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
 
-        fun newInstanceAddItem(): InstrumentItemFragment {
-            return InstrumentItemFragment().apply {
-                arguments = Bundle().apply {
-                    putString(SCREEN_MODE, MODE_ADD)
-                }
-            }
-        }
-
-        fun newInstanceEditItem(instrumentItemId: Int): InstrumentItemFragment {
-            return InstrumentItemFragment().apply {
-                arguments = Bundle().apply {
-                    putString(SCREEN_MODE, MODE_EDIT)
-                    putInt(INSTRUMENT_ITEM_ID, instrumentItemId)
-                }
-            }
-        }
     }
+
 }
