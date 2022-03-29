@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoViewModel
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemViewModel
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailViewModel
+import com.dstakhanov.findealscommithistory.presentation.reports.InstrumentReportViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -24,4 +25,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(InstrumentInfoViewModel::class)
     fun bindInstrumentInfoViewModel(viewModel:InstrumentInfoViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InstrumentReportViewModel::class)
+    fun bindInstrumentReportViewModel(viewModel:InstrumentReportViewModel): ViewModel
 }

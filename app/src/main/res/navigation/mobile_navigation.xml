@@ -11,11 +11,9 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_instrument_info_price_list">
         <action
-            android:id="@+id/action_nav_home_to_instrumentInfoDetailFragment"
-            app:destination="@id/instrument_info_detail_fragment" />
-        <argument
-            android:name="fSym"
-            app:argType="string" />
+            android:id="@+id/action_nav_home_to_instrument_info_detail_fragment"
+            app:destination="@id/instrument_info_detail_fragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/instrument_info_detail_fragment"
@@ -26,36 +24,31 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/reports"
-        android:name="com.dstakhanov.findealscommithistory.presentation.ui.home.HomeFragment"
-        android:label="fragment_slideshow"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/instrument_item_list"
         android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment"
         android:label="fragment_instrument_item"
         tools:layout="@layout/fragment_instrument_item" >
         <action
             android:id="@+id/action_instrument_item_list_to_instrument_item_detail_fragment"
-            app:destination="@id/instrument_item_detail_fragment" />
-        <argument
-            android:name="extra_instrument_item_id"
-            app:argType="integer" />
-        <argument
-            android:name="extra_mode"
-            app:argType="string" />
+            app:destination="@id/instrument_item_detail_fragment">
+        </action>
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/instrument_item_detail_fragment"
         android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment"
         android:label="fragment_instrument_item_detail"
         tools:layout="@layout/fragment_instrument_item_detail" >
         <argument
-            android:name="extra_instrument_item_id"
+            android:name="instrumentItemId"
             app:argType="integer" />
         <argument
-            android:name="extra_mode"
+            android:name="screenMode"
             app:argType="string" />
-    </fragment>
+    </dialog>
+    <fragment
+        android:id="@+id/instrument_report_fragment"
+        android:name="com.dstakhanov.findealscommithistory.presentation.reports.InstrumentReportFragment"
+        android:label="fragment_instrument_report"
+        tools:layout="@layout/fragment_instrument_report" />
 
 </navigation>

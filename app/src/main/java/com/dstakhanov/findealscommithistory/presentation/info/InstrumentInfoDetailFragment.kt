@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoDetailBinding
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragmentArgs
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class InstrumentInfoDetailFragment : Fragment() {
 
     private lateinit var infoViewModel: InstrumentInfoViewModel
+    private val args by navArgs<InstrumentInfoDetailFragmentArgs>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -47,7 +50,7 @@ class InstrumentInfoDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fromSymbol = getSymbol()
+        val fromSymbol = args.fSym
         infoViewModel =
             ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
         infoViewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner) {
@@ -69,19 +72,4 @@ class InstrumentInfoDetailFragment : Fragment() {
         _binding = null
     }
 
-    private fun getSymbol(): String {
-        return requireArguments().getString(EXTRA_FROM_SYMBOL, EMPTY_SYMBOL)
-    }
-
-    companion object {
-        private const val EXTRA_FROM_SYMBOL = "fSym"
-        private const val EMPTY_SYMBOL = ""
-        fun newInstance(fromSymbol: String): Fragment {
-            return InstrumentInfoDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(EXTRA_FROM_SYMBOL, fromSymbol)
-                }
-            }
-        }
-    }
 }

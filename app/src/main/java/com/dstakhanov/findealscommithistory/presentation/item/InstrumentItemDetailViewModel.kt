@@ -34,7 +34,6 @@ class InstrumentItemDetailViewModel @Inject constructor(
         get() = _instrumentItem
 
     private val _shouldCloseScreen = MutableLiveData<Unit>()
-
     val shouldCloseScreen: LiveData<Unit>
         get() = _shouldCloseScreen
 

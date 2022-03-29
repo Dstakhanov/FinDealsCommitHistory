@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(),
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.instrument_item_list, R.id.reports
+                R.id.nav_home, R.id.instrument_item_list, R.id.instrument_report_fragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -57,6 +57,5 @@ class MainActivity : AppCompatActivity(),
 
     override fun onEditingFinished() {
         Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
-        supportFragmentManager.popBackStack()
     }
 }

@@ -15,7 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33BB86FC"
             android:orientation="horizontal"
             android:padding="16dp">
 
@@ -23,8 +22,8 @@
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
+                android:layout_weight="0.5"
+                android:textColor="@color/secondary_light"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="Салфетки" />
@@ -33,7 +32,8 @@
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:layout_weight="0.15"
+                android:textColor="@color/secondary_light"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="1" />
@@ -42,7 +42,8 @@
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_light"
+                android:layout_weight="0.15"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="1" />
@@ -51,7 +52,8 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_light"
+                android:layout_weight="0.15"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="1" />

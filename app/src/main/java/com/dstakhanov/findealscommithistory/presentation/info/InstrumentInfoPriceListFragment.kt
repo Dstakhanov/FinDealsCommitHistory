@@ -1,7 +1,6 @@
 package com.dstakhanov.findealscommithistory.presentation.info
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoPriceListBinding
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
@@ -21,7 +18,6 @@ import javax.inject.Inject
 class InstrumentInfoPriceListFragment : Fragment() {
 
     private lateinit var infoViewModel: InstrumentInfoViewModel
-    private val args by navArgs<InstrumentInfoPriceListFragmentArgs>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -56,11 +52,7 @@ class InstrumentInfoPriceListFragment : Fragment() {
         adapter.onInstrumentClickListener =
             object : InstrumentInfoAdapter.OnInstrumentClickListener {
                 override fun onInstrumentClick(instrumentPriceInfo: InstrumentInfo) {
-                    if (isOnePaneMode()) {
-                        launchDetailOnePaneFragment(instrumentPriceInfo.fromSymbol)
-                    } else {
-                        launchDetailTwoPaneFragment(instrumentPriceInfo.fromSymbol)
-                    }
+                    launchDetailFragment(instrumentPriceInfo.fromSymbol)
                 }
             }
         binding.rvInstrumentPriceList.adapter = adapter
@@ -77,27 +69,13 @@ class InstrumentInfoPriceListFragment : Fragment() {
         _binding = null
     }
 
-    private fun isOnePaneMode() =
-        getResources().getConfiguration().orientation ==
-                Configuration.ORIENTATION_PORTRAIT
 
-    private fun launchDetailOnePaneFragment(fromSymbol: String) {
+    private fun launchDetailFragment(fromSymbol: String) {
         findNavController().navigate(
             InstrumentInfoPriceListFragmentDirections.actionNavHomeToInstrumentInfoDetailFragment(
                 fromSymbol
             )
         )
-
-    }
-
-    private fun launchDetailTwoPaneFragment(fromSymbol: String) {
-        requireActivity().supportFragmentManager.popBackStack()
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, InstrumentInfoDetailFragment.newInstance(fromSymbol))
-            .addToBackStack(null)
-            .commit()
-
     }
 
 }

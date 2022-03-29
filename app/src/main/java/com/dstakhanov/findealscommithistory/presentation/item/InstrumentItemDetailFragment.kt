@@ -7,20 +7,22 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemDetailBinding
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
-import com.squareup.picasso.Picasso
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
 
-class InstrumentItemDetailFragment : Fragment() {
+class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
 
     private lateinit var detailViewModel: InstrumentItemDetailViewModel
     private lateinit var onEditingFinishedListener: OnEditingFinishedListener
+    private val args by navArgs<InstrumentItemDetailFragmentArgs>()
 
     private var _binding: FragmentInstrumentItemDetailBinding? = null
     private val binding: FragmentInstrumentItemDetailBinding
@@ -104,6 +106,7 @@ class InstrumentItemDetailFragment : Fragment() {
         }
         detailViewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
             onEditingFinishedListener.onEditingFinished()
+            findNavController().popBackStack()
         }
     }
 
@@ -185,23 +188,15 @@ class InstrumentItemDetailFragment : Fragment() {
     }
 
     private fun parseParams() {
-        val args = requireArguments()
-        if (!args.containsKey(SCREEN_MODE)) {
-            throw RuntimeException("Param screen mode is absent")
-        }
-        val mode = args.getString(SCREEN_MODE)
+
+        val mode = args.screenMode
         if (mode != MODE_EDIT && mode != MODE_ADD) {
             throw RuntimeException("Unknown screen mode $mode")
         }
         screenMode = mode
         if (screenMode == MODE_EDIT) {
-            if (!args.containsKey(INSTRUMENT_ITEM_ID)) {
-                throw RuntimeException("Param instrument item id is absent")
-            }
-            instrumentItemId = args.getInt(INSTRUMENT_ITEM_ID, InstrumentItem.UNDEFINED_ID)
+            instrumentItemId = args.instrumentItemId
         }
-
-
     }
 
     interface OnEditingFinishedListener {
@@ -211,27 +206,9 @@ class InstrumentItemDetailFragment : Fragment() {
 
     companion object {
 
-        private const val SCREEN_MODE = "extra_mode"
-        private const val INSTRUMENT_ITEM_ID = "extra_instrument_item_id"
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
 
-        fun newInstanceAddItem(): InstrumentItemDetailFragment {
-            return InstrumentItemDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(SCREEN_MODE, MODE_ADD)
-                }
-            }
-        }
-
-        fun newInstanceEditItem(instrumentItemId: Int): InstrumentItemDetailFragment {
-            return InstrumentItemDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(SCREEN_MODE, MODE_EDIT)
-                    putInt(INSTRUMENT_ITEM_ID, instrumentItemId)
-                }
-            }
-        }
     }
 }

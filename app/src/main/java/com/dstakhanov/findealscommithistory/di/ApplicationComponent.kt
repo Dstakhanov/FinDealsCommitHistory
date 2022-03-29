@@ -3,11 +3,10 @@ package com.dstakhanov.findealscommithistory.di
 import android.app.Application
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoDetailFragment
-import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListActivity
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListFragment
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemMainActivity
+import com.dstakhanov.findealscommithistory.presentation.reports.InstrumentReportFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -21,17 +20,15 @@ import dagger.Component
 )
 interface ApplicationComponent {
 
-    fun inject(activity: InstrumentItemMainActivity)
-
     fun inject(detailFragment: InstrumentItemDetailFragment)
-
-    fun inject(activity: InstrumentInfoPriceListActivity)
 
     fun inject(fragment: InstrumentInfoDetailFragment)
 
     fun inject(fragment: InstrumentInfoPriceListFragment)
 
     fun inject(fragment: InstrumentItemFragment)
+
+    fun inject(fragment: InstrumentReportFragment)
 
     fun inject(application: InstrumentApp)
 

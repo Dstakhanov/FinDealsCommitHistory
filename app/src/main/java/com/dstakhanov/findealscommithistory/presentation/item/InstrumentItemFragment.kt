@@ -1,7 +1,6 @@
 package com.dstakhanov.findealscommithistory.presentation.item
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemBinding
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
@@ -21,10 +18,10 @@ import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemListAdapter
 import javax.inject.Inject
 
-class InstrumentItemFragment : Fragment() {
+class InstrumentItemFragment : Fragment(){
     private lateinit var viewModel: InstrumentItemViewModel
     private lateinit var instrumentListAdapter: InstrumentItemListAdapter
-    private val args by navArgs<InstrumentItemDetailFragmentArgs>()
+
     private var _binding: FragmentInstrumentItemBinding? = null
     private val binding: FragmentInstrumentItemBinding
         get() = _binding ?: throw RuntimeException("FragmentInstrumentItemBinding is null")
@@ -32,6 +29,7 @@ class InstrumentItemFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
     private val component by lazy {
         (requireActivity().application as InstrumentApp).component
     }
@@ -61,12 +59,7 @@ class InstrumentItemFragment : Fragment() {
             instrumentListAdapter.submitList(it)
         }
         binding.buttonAddInstrumentItem.setOnClickListener {
-            if (isOnePaneMode()) {
-                launchOnePaneFragment(InstrumentItem.UNDEFINED_ID, MODE_ADD)
-            } else {
-                launchOnePaneFragment(InstrumentItem.UNDEFINED_ID, MODE_ADD)
-            }
-
+                launchDetailFragment(InstrumentItem.UNDEFINED_ID, MODE_ADD)
         }
 
     }
@@ -75,23 +68,14 @@ class InstrumentItemFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    private fun isOnePaneMode(): Boolean = getResources().getConfiguration().orientation ==
-            Configuration.ORIENTATION_PORTRAIT
-
-    private fun launchOnePaneFragment(instrumentItemId: Int, screenMode: String) {
+    private fun launchDetailFragment(instrumentItemId: Int, screenMode: String) {
         findNavController().navigate(
             InstrumentItemFragmentDirections.actionInstrumentItemListToInstrumentItemDetailFragment(
-                instrumentItemId, screenMode
+                instrumentItemId,
+                screenMode
             )
         )
 
-    }
-    private fun launchDetailFragment(fragment: Fragment, resId: Int) {
-        requireActivity().supportFragmentManager.popBackStack()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(resId, fragment)
-            .addToBackStack(null)
-            .commit()
     }
 
 
@@ -115,14 +99,7 @@ class InstrumentItemFragment : Fragment() {
     }
     private fun setupClickListener() {
         instrumentListAdapter.onInstrumentItemClickListener = {
-            if (isOnePaneMode()) {
-                launchOnePaneFragment(it.id, MODE_EDIT)
-            } else {
-                launchDetailFragment(
-                    InstrumentItemDetailFragment.newInstanceEditItem(it.id),
-                    R.id.instrument_item_container1
-                )
-            }
+            launchDetailFragment(it.id, MODE_EDIT)
         }
     }
     private fun setupSwipeListener(rvInstrumentList: RecyclerView) {
@@ -157,8 +134,6 @@ class InstrumentItemFragment : Fragment() {
 
     companion object {
 
-        private const val SCREEN_MODE = "extra_mode"
-        private const val INSTRUMENT_ITEM_ID = "extra_instrument_item_id"
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
