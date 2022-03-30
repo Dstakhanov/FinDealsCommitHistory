@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/ic_add.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/ic_menu_camera.xml" value="0.20185185185185187" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.20185185185185187" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.20185185185185187" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/drawable/side_nav_bar.xml" value="0.25092592592592594" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_info_price_list.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout-land/activity_instrument_item_main.xml" value="0.20855379188712522" />
@@ -27,6 +30,7 @@
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_info_price_list.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_item.xml" value="0.22871376811594202" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_instrument_item_detail.xml" value="0.10052083333333334" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_portfolio.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/fragment_slideshow.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_disabled.xml" value="0.1329479768786127" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/item_instrument_enabled.xml" value="0.11386138613861387" />
@@ -34,6 +38,7 @@
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/layout/nav_header_main.xml" value="0.129981884057971" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/main.xml" value="0.25" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20185185185185187" />
       </map>
     </option>
   </component>

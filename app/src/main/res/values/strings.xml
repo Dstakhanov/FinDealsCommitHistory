@@ -2,18 +2,22 @@
     <string name="app_name">FinDealsCommitHistory</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Fin Deals Commit History</string>
+    <string name="nav_header_subtitle">Dstakhanov@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Настройки</string>
 
     <string name="menu_home">Список инструментов</string>
     <string name="menu_gallery">Сделки</string>
+    <string name="menu_portfolio">Портфель</string>
     <string name="menu_slideshow">Отчеты</string>
 
     <string name="nav_label_detail_fragment">Детальная информация</string>
     <string name="nav_label_item_detail_fragment">Редактирование позиции</string>
     <string name="nav_label_item_fragment">Список сделок</string>
+    <string name="nav_label_portfolio_list">Портфель</string>
+    <string name="nav_label_reports">Отчеты</string>
+
 
     <string name="symbols_template">%s / %s</string>
     <string name="last_update_template">Время последнего обновления: %s</string>

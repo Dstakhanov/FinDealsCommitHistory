@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import javax.inject.Inject
 
-class InstrumentReportViewModel @Inject constructor(
+class ReportViewModel @Inject constructor(
 
 ) : ViewModel() {
 

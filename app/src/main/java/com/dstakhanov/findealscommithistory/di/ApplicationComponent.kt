@@ -6,7 +6,8 @@ import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoDeta
 import com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListFragment
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment
 import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment
-import com.dstakhanov.findealscommithistory.presentation.reports.InstrumentReportFragment
+import com.dstakhanov.findealscommithistory.presentation.portfolio.PortfolioFragment
+import com.dstakhanov.findealscommithistory.presentation.reports.ReportFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -28,7 +29,9 @@ interface ApplicationComponent {
 
     fun inject(fragment: InstrumentItemFragment)
 
-    fun inject(fragment: InstrumentReportFragment)
+    fun inject(fragment: PortfolioFragment)
+
+    fun inject(fragment: ReportFragment)
 
     fun inject(application: InstrumentApp)
 

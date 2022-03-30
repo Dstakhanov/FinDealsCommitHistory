@@ -1,4 +1,4 @@
-package com.dstakhanov.findealscommithistory.presentation.reports
+package com.dstakhanov.findealscommithistory.presentation.portfolio
 
 import android.content.Context
 import android.os.Bundle
@@ -8,25 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemBinding
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentReportBinding
-import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
+import com.dstakhanov.findealscommithistory.databinding.FragmentPortfolioBinding
+import com.dstakhanov.findealscommithistory.databinding.FragmentReportBinding
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragmentDirections
-import com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemViewModel
-import com.dstakhanov.findealscommithistory.presentation.item.adapters.InstrumentItemListAdapter
 import javax.inject.Inject
 
-class InstrumentReportFragment : Fragment() {
-    private lateinit var viewModel: InstrumentReportViewModel
+class PortfolioFragment : Fragment() {
+    private lateinit var viewModel: PortfolioViewModel
 
-    private var _binding: FragmentInstrumentReportBinding? = null
-    private val binding: FragmentInstrumentReportBinding
-        get() = _binding ?: throw RuntimeException("FragmentInstrumentReportBinding is null")
+    private var _binding: FragmentPortfolioBinding? = null
+    private val binding: FragmentPortfolioBinding
+        get() = _binding ?: throw RuntimeException("FragmentPortfolioBinding is null")
 
 
     @Inject
@@ -46,7 +39,7 @@ class InstrumentReportFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInstrumentReportBinding.inflate(
+        _binding = FragmentPortfolioBinding.inflate(
             inflater, container, false
         )
         return binding.root
@@ -55,7 +48,7 @@ class InstrumentReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(InstrumentReportViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(PortfolioViewModel::class.java)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
