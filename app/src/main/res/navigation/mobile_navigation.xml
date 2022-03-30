@@ -26,18 +26,17 @@
     <fragment
         android:id="@+id/instrument_item_list"
         android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment"
-        android:label="fragment_instrument_item"
-        tools:layout="@layout/fragment_instrument_item" >
+        android:label="@string/nav_label_item_fragment"
+        tools:layout="@layout/fragment_instrument_item">
         <action
             android:id="@+id/action_instrument_item_list_to_instrument_item_detail_fragment"
-            app:destination="@id/instrument_item_detail_fragment">
-        </action>
+            app:destination="@id/instrument_item_detail_fragment"></action>
     </fragment>
     <dialog
         android:id="@+id/instrument_item_detail_fragment"
         android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment"
-        android:label="fragment_instrument_item_detail"
-        tools:layout="@layout/fragment_instrument_item_detail" >
+        android:label="@string/nav_label_item_detail_fragment"
+        tools:layout="@layout/fragment_instrument_item_detail">
         <argument
             android:name="instrumentItemId"
             app:argType="integer" />

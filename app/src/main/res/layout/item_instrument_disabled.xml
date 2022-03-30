@@ -18,15 +18,21 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/tv_direction"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/arrow_up"
+                android:layout_weight="0.10" />
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.45"
                 android:textColor="@color/secondary_light"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                tools:text="Салфетки" />
+                tools:text="Bitcoin" />
 
             <TextView
                 android:id="@+id/tv_count"
@@ -57,6 +63,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="1" />
+
 
         </LinearLayout>
 

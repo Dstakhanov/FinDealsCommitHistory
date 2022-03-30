@@ -1,22 +1,28 @@
 package com.dstakhanov.findealscommithistory.presentation.item
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dstakhanov.findealscommithistory.R
+import com.dstakhanov.findealscommithistory.util.DateUtility
 import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemDetailBinding
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
 import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+
 
 class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
 
@@ -33,6 +39,8 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    lateinit var dateUtility: DateUtility
 
     private val component by lazy {
         (requireActivity().application as InstrumentApp).component
@@ -52,6 +60,7 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         parseParams()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,6 +78,7 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
         addTextChangeListeners()
         launchRightMode()
         observeViewModel()
+        setupDatePicker()
     }
 
     private fun launchRightMode() {
@@ -109,7 +119,6 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
             findNavController().popBackStack()
         }
     }
-
 
     private fun addTextChangeListeners() {
         binding.etName.addTextChangedListener(object : TextWatcher {
@@ -159,12 +168,14 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
 
     private fun launchEditMode() {
         detailViewModel.getInstrumentItem(instrumentItemId)
-        detailViewModel.instrumentItem.observe(viewLifecycleOwner){
+        detailViewModel.instrumentItem.observe(viewLifecycleOwner) {
             with(binding) {
                 etName.setText(it.symbol)
                 etCount.setText(it.count.toString())
                 etPrice.setText(it.price.toString())
-                etDate.setText(it.createDate.toString())
+                etDate.setText(it.createDate)
+                if (it.direction == SELL_DIRECTION)
+                    rbSell.isChecked = true else rbBuy.isChecked = true
             }
         }
         binding.saveButton.setOnClickListener {
@@ -172,7 +183,8 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
                 binding.etName.text?.toString(),
                 binding.etCount.text?.toString(),
                 binding.etPrice.text?.toString(),
-                binding.etDate.text?.toString()
+                binding.etDate.text?.toString(),
+                if (binding.rbSell.isChecked) SELL_DIRECTION else BUY_DIRECTION
             )
         }
     }
@@ -183,6 +195,8 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
                 binding.etName.text?.toString(),
                 binding.etCount.text?.toString(),
                 binding.etPrice.text?.toString(),
+                binding.etDate.text?.toString(),
+                if (binding.rbSell.isChecked) SELL_DIRECTION else BUY_DIRECTION
             )
         }
     }
@@ -203,12 +217,40 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
         fun onEditingFinished()
     }
 
+    fun setupDatePicker() {
+
+        val cal = Calendar.getInstance()
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            val myFormat = dateUtility.patternDate
+            val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+            binding.etDate.setText(sdf.format(cal.time))
+        }
+
+        binding.etDate.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                val dialog = DatePickerDialog(requireContext(), dateSetListener,
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH))
+                dialog.datePicker.maxDate = dateUtility.getCurrentDateInMills()
+                dialog.show()
+            }
+        }
+
+    }
 
     companion object {
 
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
+        private const val BUY_DIRECTION = 1
+        private const val SELL_DIRECTION = -1
 
     }
 }

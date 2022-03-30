@@ -1,17 +1,22 @@
 package com.dstakhanov.findealscommithistory.data.item
 
+import com.dstakhanov.findealscommithistory.util.DateUtility
 import com.dstakhanov.findealscommithistory.domain.item.InstrumentItem
 import javax.inject.Inject
 
 class InstrumentListMapper @Inject constructor(){
+
+    @Inject
+    lateinit var dateUtility: DateUtility
 
     fun mapEntityToDbModel(instrumentItem: InstrumentItem) = InstrumentItemDbModel(
         id = instrumentItem.id,
         symbol = instrumentItem.symbol,
         count = instrumentItem.count,
         price = instrumentItem.price,
-        createDate = instrumentItem.createDate,
-        enabled = instrumentItem.enabled
+        createDate = dateUtility.convertDateToLong(instrumentItem.createDate),
+        enabled = instrumentItem.enabled,
+        direction = instrumentItem.direction
     )
 
     fun mapDbModelToEntity(instrumentItemDbModel: InstrumentItemDbModel) = InstrumentItem(
@@ -19,9 +24,11 @@ class InstrumentListMapper @Inject constructor(){
         symbol = instrumentItemDbModel.symbol,
         count = instrumentItemDbModel.count,
         price = instrumentItemDbModel.price,
-        createDate = instrumentItemDbModel.createDate,
-        enabled = instrumentItemDbModel.enabled
+        createDate = dateUtility.convertTimestampToDateTime(instrumentItemDbModel.createDate),
+        enabled = instrumentItemDbModel.enabled,
+        direction = instrumentItemDbModel.direction
     )
+
 
     fun mapListDbModelToListEntity(list: List<InstrumentItemDbModel>) = list.map {
         mapDbModelToEntity(it)

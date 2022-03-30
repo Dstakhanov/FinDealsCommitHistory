@@ -1,16 +1,16 @@
 package com.dstakhanov.findealscommithistory.data.info
 
+import com.dstakhanov.findealscommithistory.util.DateUtility
 import com.dstakhanov.findealscommithistory.data.info.network.model.InstrumentInfoDto
 import com.dstakhanov.findealscommithistory.data.info.network.model.InstrumentInfoJsonContainerDto
 import com.dstakhanov.findealscommithistory.data.info.network.model.InstrumentNamesListDto
 import com.dstakhanov.findealscommithistory.domain.info.InstrumentInfo
 import com.google.gson.Gson
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class InstrumentInfoMapper @Inject constructor(){
+    @Inject
+    lateinit var dateUtility: DateUtility
 
     fun mapDtoToDbModel(dto: InstrumentInfoDto) = InstrumentInfoDbModel(
         fromSymbol = dto.fromSymbol,
@@ -51,22 +51,12 @@ class InstrumentInfoMapper @Inject constructor(){
         fromSymbol = dbModel.fromSymbol,
         toSymbol = dbModel.toSymbol,
         price = dbModel.price,
-        lastUpdate = convertTimestampToTime(dbModel.lastUpdate),
+        lastUpdate = dateUtility.convertTimestampToTime(dbModel.lastUpdate),
         highDay = dbModel.highDay,
         lowDay = dbModel.lowDay,
         lastMarket = dbModel.lastMarket,
         imageUrl = dbModel.imageUrl
     )
-
-    private fun convertTimestampToTime(timestamp: Long?): String {
-        if (timestamp == null) return ""
-        val stamp = Timestamp(timestamp * 1000)
-        val date = Date(stamp.time)
-        val pattern = "HH:mm:ss"
-        val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-        sdf.timeZone = TimeZone.getDefault()
-        return sdf.format(date)
-    }
 
     companion object {
         const val BASE_IMAGE_URL = "https://cryptocompare.com/"

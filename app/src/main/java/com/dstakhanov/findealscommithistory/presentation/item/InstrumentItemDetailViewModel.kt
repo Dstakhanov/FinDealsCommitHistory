@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dstakhanov.findealscommithistory.util.DateUtility
 import com.dstakhanov.findealscommithistory.domain.item.AddInstrumentItemUseCase
 import com.dstakhanov.findealscommithistory.domain.item.EditInstrumentItemUseCase
 import com.dstakhanov.findealscommithistory.domain.item.GetInstrumentItemUseCase
@@ -16,6 +17,8 @@ class InstrumentItemDetailViewModel @Inject constructor(
     private val addInstrumentItemUseCase: AddInstrumentItemUseCase,
     private val editInstrumentItemUseCase: EditInstrumentItemUseCase
 ) : ViewModel() {
+    @Inject
+    lateinit var dateUtility: DateUtility
 
     private val _errorInputName = MutableLiveData<Boolean>()
     val errorInputName: LiveData<Boolean>
@@ -45,15 +48,22 @@ class InstrumentItemDetailViewModel @Inject constructor(
 
     }
 
-    fun addInstrumentItem(inputName: String?, inputCount: String?, inputPrice: String?) {
+    fun addInstrumentItem(
+        inputName: String?,
+        inputCount: String?,
+        inputPrice: String?,
+        inputDate: String?,
+        inputDirection: Int
+    ) {
         val symbol = parseName(inputName)
         val count = parseCount(inputCount)
         val price = parsePrice(inputPrice)
-        val createDate = System.currentTimeMillis()
+        val createDate = parseDate(inputDate)
         val fieldsValid = validateInput(symbol, count, price)
         if (fieldsValid) {
             viewModelScope.launch {
-                val instrumentItem = InstrumentItem(symbol, count, price, createDate, true)
+                val instrumentItem =
+                    InstrumentItem(symbol, count, price, createDate, inputDirection, true)
                 addInstrumentItemUseCase.addInstrumentItem(instrumentItem)
                 finishWork()
             }
@@ -65,7 +75,8 @@ class InstrumentItemDetailViewModel @Inject constructor(
         inputName: String?,
         inputCount: String?,
         inputPrice: String?,
-        inputDate: String?
+        inputDate: String?,
+        inputDirection: Int
     ) {
         val symbol = parseName(inputName)
         val count = parseCount(inputCount)
@@ -79,7 +90,8 @@ class InstrumentItemDetailViewModel @Inject constructor(
                         symbol = symbol,
                         count = count,
                         price = price,
-                        createDate = createDate
+                        createDate = createDate,
+                        direction = inputDirection
                     )
                     editInstrumentItemUseCase.editInstrumentItem(item)
                     finishWork()
@@ -92,11 +104,11 @@ class InstrumentItemDetailViewModel @Inject constructor(
         return inputName?.trim() ?: ""
     }
 
-    private fun parseCount(inputCount: String?): Int {
+    private fun parseCount(inputCount: String?): Double {
         return try {
-            inputCount?.trim()?.toInt() ?: 0
+            inputCount?.trim()?.toDouble() ?: 0.0
         } catch (e: Exception) {
-            0
+            0.0
         }
     }
 
@@ -108,25 +120,24 @@ class InstrumentItemDetailViewModel @Inject constructor(
         }
     }
 
-    private fun parseDate(inputDate: String?): Long {
-        return try {
-            inputDate?.trim()?.toLong() ?: 0
-        } catch (e: Exception) {
-            0
-        }
+    private fun parseDate(inputDate: String?): String {
+        return if (inputDate != null && inputDate != "") inputDate
+        else dateUtility.convertTimestampToDateTime(
+            dateUtility.getCurrentDateInMills() / 1000L
+        )
     }
 
-    private fun validateInput(name: String, count: Int, price: Double): Boolean {
+    private fun validateInput(name: String, count: Double, price: Double): Boolean {
         var result = true
         if (name.isBlank()) {
             _errorInputName.value = true
             result = false
         }
-        if (count <= 0) {
+        if (count <= 0.0) {
             _errorInputCount.value = true
             result = false
         }
-        if (count <= 0.0) {
+        if (price <= 0.0) {
             _errorInputPrice.value = true
             result = false
         }
@@ -148,5 +159,4 @@ class InstrumentItemDetailViewModel @Inject constructor(
     private fun finishWork() {
         _shouldCloseScreen.value = Unit
     }
-
 }

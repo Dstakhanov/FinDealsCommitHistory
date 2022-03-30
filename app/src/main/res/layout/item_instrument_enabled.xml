@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp">
+            <ImageView
+                android:id="@+id/tv_direction"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/arrow_up"
+                android:layout_weight="0.10" />
 
             <TextView
                 android:id="@+id/tv_name"

@@ -8,8 +8,9 @@ data class InstrumentItemDbModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val symbol: String,
-    val count: Int,
+    val count: Double,
     val price: Double,
     val createDate: Long,
     val enabled: Boolean,
+    val direction: Int
 )

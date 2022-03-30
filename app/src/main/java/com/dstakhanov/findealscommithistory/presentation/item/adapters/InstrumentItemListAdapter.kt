@@ -35,7 +35,10 @@ class InstrumentItemListAdapter :
             tvName.text = instrumentItem.symbol
             tvCount.text = instrumentItem.count.toString()
             tvPrice.text = instrumentItem.price.toString()
-            tvDate.text = instrumentItem.createDate.toString()
+            tvDate.text = instrumentItem.createDate
+            val directionImage = if (instrumentItem.direction == SELL_DIRECTION)
+                R.drawable.arrow_down else R.drawable.arrow_up
+            tvDirection.setImageResource(directionImage)
         }
 
     }
@@ -55,5 +58,8 @@ class InstrumentItemListAdapter :
         const val VIEW_TYPE_ENABLED = 100
         const val VIEW_TYPE_DISABLED = 101
         const val MAX_POOL_SIZE = 30
+        private const val BUY_DIRECTION = 1
+        private const val SELL_DIRECTION = -1
+
     }
 }

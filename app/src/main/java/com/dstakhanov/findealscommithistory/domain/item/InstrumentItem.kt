@@ -2,9 +2,10 @@ package com.dstakhanov.findealscommithistory.domain.item
 
 data class InstrumentItem(
     val symbol: String,
-    val count: Int,
+    val count: Double,
     val price: Double,
-    val createDate: Long,
+    val createDate: String,
+    val direction: Int,
     val enabled: Boolean,
     var id: Int = UNDEFINED_ID,
 ) {
