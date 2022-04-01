@@ -1,0 +1,10 @@
+package com.dstakhanov.api.model
+
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+data class InstrumentNamesListDto(
+    @SerializedName("Data")
+    @Expose
+    val names: List<InstrumentNameContainerDto>? = null
+)

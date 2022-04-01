@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">FinDealsCommitHistory</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Fin Deals Commit History</string>
+    <string name="nav_header_subtitle">Dstakhanov@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Настройки</string>
+
+    <string name="menu_home">Список инструментов</string>
+    <string name="menu_gallery">Сделки</string>
+    <string name="menu_portfolio">Портфель</string>
+    <string name="menu_slideshow">Отчеты</string>
+
+    <string name="nav_label_detail_fragment">Детальная информация</string>
+    <string name="nav_label_item_detail_fragment">Редактирование позиции</string>
+    <string name="nav_label_item_fragment">Список сделок</string>
+    <string name="nav_label_portfolio_list">Портфель</string>
+    <string name="nav_label_reports">Отчеты</string>
+
+
+    <string name="symbols_template">%s / %s</string>
+    <string name="last_update_template">Время последнего обновления: %s</string>
+    <string name="slash">/</string>
+    <string name="price_label">Цена:</string>
+    <string name="min_price_label">Минимум за день:</string>
+    <string name="max_price_label">Максимум за день:</string>
+    <string name="last_market_label">Последняя сделка:</string>
+    <string name="last_updated_label">Обновлено:</string>
+    <string name="rb_buy_label">Купить</string>
+    <string name="rb_sell_label">Продать</string>
+
+    <string name="add_instrument_item_content_description">Add new instrument item</string>
+    <string name="name_hint">Тикер:</string>
+    <string name="count_hint">Количество:</string>
+    <string name="create_date_hint">Дата создания:</string>
+    <string name="price_hint">Цена:</string>
+    <string name="save_btn">Сохранить</string>
+    <string name="error_input_name">Неверный символ</string>
+    <string name="error_input_count">Неверное количество</string>
+    <string name="error_input_price">Неверная цена</string>
+
+    <string name="dialog_question">Вы уверены, что хотите удалить текущую позицию?</string>
+    <string name="dialog_label">Удаление позиции</string>
+    <string name="success_saving">Успешно</string>
+</resources>

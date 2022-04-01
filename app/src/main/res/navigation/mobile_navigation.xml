@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/info_list"
-        android:name="com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoPriceListFragment"
+        android:name="InstrumentInfoPriceListFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_instrument_info_price_list">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/info_detail"
-        android:name="com.dstakhanov.findealscommithistory.presentation.info.InstrumentInfoDetailFragment"
+        android:name="InstrumentInfoDetailFragment"
         android:label="@string/nav_label_detail_fragment">
         <argument
             android:name="fSym"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/item_list"
-        android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemFragment"
+        android:name="InstrumentItemFragment"
         android:label="@string/nav_label_item_fragment"
         tools:layout="@layout/fragment_instrument_item">
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <dialog
         android:id="@+id/item_detail"
-        android:name="com.dstakhanov.findealscommithistory.presentation.item.InstrumentItemDetailFragment"
+        android:name="InstrumentItemDetailFragment"
         android:label="@string/nav_label_item_detail_fragment"
         tools:layout="@layout/fragment_instrument_item_detail">
         <argument
@@ -46,12 +46,12 @@
     </dialog>
     <fragment
         android:id="@+id/reports"
-        android:name="com.dstakhanov.findealscommithistory.presentation.reports.ReportFragment"
+        android:name="ReportFragment"
         android:label="@string/nav_label_reports"
         tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/portfolio_list"
-        android:name="com.dstakhanov.findealscommithistory.presentation.portfolio.PortfolioFragment"
+        android:name="PortfolioFragment"
         android:label="@string/nav_label_portfolio_list" />
 
 </navigation>
