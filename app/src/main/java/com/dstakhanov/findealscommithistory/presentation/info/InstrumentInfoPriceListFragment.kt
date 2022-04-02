@@ -59,7 +59,7 @@ class InstrumentInfoPriceListFragment : Fragment() {
         binding.rvInstrumentPriceList.itemAnimator = null
         infoViewModel =
             ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
-        infoViewModel.instrumentInfoList.observe(this) {
+        infoViewModel.instrumentInfoList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }
