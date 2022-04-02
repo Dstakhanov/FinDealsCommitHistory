@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -5,14 +7,45 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.4.1")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.19.0")
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config = files("$projectDir/config/detekt/detekt.yml")
+    source = objects.fileCollection().from(
+            DetektExtension.DEFAULT_SRC_DIR_JAVA,
+            DetektExtension.DEFAULT_TEST_SRC_DIR_JAVA,
+            DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
+            DetektExtension.DEFAULT_TEST_SRC_DIR_KOTLIN,
+    )
+    baseline = file("$rootDir/config/detekt/baseline.xml")
+}
+
+
+
+tasks.detekt {
+    jvmTarget = "1.8"
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
+        sarif.required.set(true)
+    }
+}
+dependencies {
+    detektPlugins project(":detekt_rules")
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

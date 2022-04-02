@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FinDealsCommitHistory"
 include ':app'
+include ':lint_rules'
+
+include ':detekt_rules'
