@@ -1,0 +1,43 @@
+
+ext {
+
+    retrofitVersion = '2.6.1'
+    jsr330Version = '1'
+    daggerVersion = '2.40.1'
+    roomVersion = '2.4.2'
+    picassoVersion = '2.71828'
+    coroutinesVersion = '1.6.0'
+    materialVersion = '1.1.0-beta02'
+    navigationVersion  = '2.4.1'
+    viewModelVersion = '2.4.1'
+    cardViewVersion = '1.0.0'
+    recyclerViewVersion = '1.2.1'
+    retrofitVersion = '2.9.0'
+    workManagerVersion = '2.7.1'
+
+    jsr330 = "javax.inject:javax.inject:$jsr330Version"
+    dagger = "com.google.dagger:dagger:$daggerVersion"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    retrofit =  "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    gson     = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    picasso = "com.squareup.picasso:picasso:$picassoVersion"
+    viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+    coroutinesDependencies = [
+            'coroutines_core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            'coroutines_android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    ]
+    navigationDependencies = [
+            'navigation_fragment' : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+            'navigation_ui' : "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    ]
+    roomDependencies = [
+            'room' : "androidx.room:room-runtime:$roomVersion",
+            'room_ktx' : "androidx.room:room-ktx:$roomVersion"
+    ]
+    material = "com.google.android.material:material:$materialVersion"
+    cardview = "androidx.cardview:cardview:$cardViewVersion"
+    recyclerview = "androidx.cardview:cardview:$recyclerViewVersion"
+    workmanager = "androidx.work:work-runtime-ktx:$workManagerVersion"
+
+}
