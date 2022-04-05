@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dstakhanov.findealscommithistory.databinding.FragmentPortfolioBinding
-import com.dstakhanov.app.InstrumentApp
-import com.dstakhanov.app.ViewModelFactory
+import com.dstakhanov.portfolio.databinding.FragmentPortfolioBinding
+import com.dstakhanov.portfolio.di.PortfolioComponent
+import com.dstakhanov.utils.ViewModelFactory
+
 import javax.inject.Inject
 
 class PortfolioFragment : Fragment() {
@@ -22,11 +23,9 @@ class PortfolioFragment : Fragment() {
 
 
     @Inject
-    lateinit var viewModelFactory: com.dstakhanov.app.ViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy {
-        (requireActivity().application as com.dstakhanov.app.InstrumentApp).component
-    }
+    private lateinit var component: PortfolioComponent
 
     override fun onAttach(context: Context) {
         component.inject(this)

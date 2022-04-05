@@ -52,7 +52,6 @@ dependencies {
     implementation project(':sources:main')
     implementation project(':sources:portfolio')
     implementation project(':sources:reports')
-    implementation project(':sources:workers')
 
     implementation workmanager
     implementation dagger

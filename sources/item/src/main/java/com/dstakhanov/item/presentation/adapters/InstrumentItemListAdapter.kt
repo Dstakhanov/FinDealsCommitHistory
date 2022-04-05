@@ -3,7 +3,8 @@ package com.dstakhanov.item.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.dstakhanov.findealscommithistory.R
+import com.dstakhanov.item.R
+
 
 class InstrumentItemListAdapter :
     ListAdapter<com.dstakhanov.item.domain.InstrumentItem, InstrumentItemViewHolder>(

@@ -2,10 +2,8 @@ package com.dstakhanov.item.presentation.adapters
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dstakhanov.findealscommithistory.R
 import com.dstakhanov.item.R
 
 class InstrumentItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {

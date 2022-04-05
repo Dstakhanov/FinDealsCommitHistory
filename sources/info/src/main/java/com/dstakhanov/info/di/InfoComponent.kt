@@ -1,9 +1,7 @@
 package com.dstakhanov.info.di
 
-import android.app.Application
 import com.dstakhanov.info.presentation.InstrumentInfoDetailFragment
 import com.dstakhanov.info.presentation.InstrumentInfoPriceListFragment
-import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -24,9 +22,7 @@ interface InfoComponent {
     @Component.Factory
     interface Factory {
 
-        fun create(
-            @BindsInstance application: Application
-        ): InfoComponent
+        fun create(): InfoComponent
     }
 
 

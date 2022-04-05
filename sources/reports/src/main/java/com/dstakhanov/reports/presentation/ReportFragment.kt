@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.dstakhanov.findealscommithistory.databinding.FragmentReportBinding
-import com.dstakhanov.app.InstrumentApp
-import com.dstakhanov.app.ViewModelFactory
+import com.dstakhanov.reports.databinding.FragmentReportBinding
+import com.dstakhanov.reports.di.ReportsComponent
+import com.dstakhanov.utils.ViewModelFactory
 import javax.inject.Inject
 
 class ReportFragment : Fragment() {
@@ -22,11 +22,9 @@ class ReportFragment : Fragment() {
 
 
     @Inject
-    lateinit var viewModelFactory: com.dstakhanov.app.ViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy {
-        (requireActivity().application as com.dstakhanov.app.InstrumentApp).component
-    }
+    private lateinit var component: ReportsComponent
 
     override fun onAttach(context: Context) {
         component.inject(this)

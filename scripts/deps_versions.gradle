@@ -7,7 +7,7 @@ ext {
     roomVersion = '2.4.2'
     picassoVersion = '2.71828'
     coroutinesVersion = '1.6.0'
-    materialVersion = '1.1.0-beta02'
+    materialVersion = '1.5.0'
     navigationVersion  = '2.4.1'
     viewModelVersion = '2.4.1'
     cardViewVersion = '1.0.0'
@@ -23,6 +23,7 @@ ext {
     gson     = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     picasso = "com.squareup.picasso:picasso:$picassoVersion"
     viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+
     coroutinesDependencies = [
             'coroutines_core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
             'coroutines_android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/portfolio_flow"
+    app:startDestination="@+id/portfolio_list">
+
+    <fragment
+        android:id="@+id/portfolio_list"
+        android:name="com.dstakhanov.portfolio.presentation.PortfolioFragment"
+        android:label="@string/nav_label_portfolio_list"
+        tools:layout="@layout/fragment_portfolio"/>
+</navigation>

@@ -4,16 +4,17 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.dstakhanov.info.data.InstrumentInfoDao
-import com.dstakhanov.info.data.InstrumentInfoDbModel
-import com.dstakhanov.findealscommithistory.data.item.InstrumentItemDbModel
-import com.dstakhanov.findealscommithistory.data.item.InstrumentListDao
+import com.dstakhanov.core.info.InstrumentInfoDao
+import com.dstakhanov.core.info.InstrumentInfoDbModel
+import com.dstakhanov.core.item.InstrumentItemDbModel
+import com.dstakhanov.core.item.InstrumentListDao
 
-@Database(entities = [InstrumentItemDbModel::class, com.dstakhanov.info.data.InstrumentInfoDbModel::class], version = 3, exportSchema = false)
+
+@Database(entities = [InstrumentItemDbModel::class, InstrumentInfoDbModel::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun instrumentListDao(): InstrumentListDao
-    abstract fun instrumentPriceInfoDao(): com.dstakhanov.info.data.InstrumentInfoDao
+    abstract fun instrumentPriceInfoDao(): InstrumentInfoDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null

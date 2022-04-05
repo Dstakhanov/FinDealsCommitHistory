@@ -4,11 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.dstakhanov.findealscommithistory.databinding.ItemInstrumentInfoBinding
+import com.dstakhanov.info.R
+import com.dstakhanov.info.databinding.ItemInstrumentInfoBinding
+import com.dstakhanov.info.domain.InstrumentInfo
+import com.squareup.picasso.Picasso
+
 
 class InstrumentInfoAdapter(
     private val context: Context
-) : ListAdapter<com.dstakhanov.info.domain.InstrumentInfo, InstrumentInfoViewHolder>(
+) : ListAdapter<InstrumentInfo, InstrumentInfoViewHolder>(
     InstrumentInfoDiffCallback
 ) {
 
@@ -44,6 +48,6 @@ class InstrumentInfoAdapter(
 
 
     interface OnInstrumentClickListener {
-        fun onInstrumentClick(instrumentPriceInfo: com.dstakhanov.info.domain.InstrumentInfo)
+        fun onInstrumentClick(instrumentPriceInfo: InstrumentInfo)
     }
 }

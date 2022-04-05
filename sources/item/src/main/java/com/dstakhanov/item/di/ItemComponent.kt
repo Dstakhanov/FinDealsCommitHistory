@@ -23,9 +23,7 @@ interface ItemComponent {
     @Component.Factory
     interface Factory {
 
-        fun create(
-            @BindsInstance application: Application
-        ): ItemComponent
+        fun create(): ItemComponent
     }
 
 

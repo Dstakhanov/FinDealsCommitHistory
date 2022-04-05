@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoDetailBinding
-import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
-import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import com.dstakhanov.info.databinding.FragmentInstrumentInfoDetailBinding
+import com.dstakhanov.info.di.InfoComponent
+import com.dstakhanov.utils.ViewModelFactory
+
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -22,9 +23,7 @@ class InstrumentInfoDetailFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy {
-        (requireActivity().application as InstrumentApp).component
-    }
+    private lateinit var component: InfoComponent
 
     private var _binding: FragmentInstrumentInfoDetailBinding? = null
     private val binding: FragmentInstrumentInfoDetailBinding

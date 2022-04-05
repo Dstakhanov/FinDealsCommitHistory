@@ -2,7 +2,7 @@ package com.dstakhanov.app.di
 
 import android.app.Application
 import com.dstakhanov.app.InstrumentApp
-import com.dstakhanov.workers.di.WorkerModule
+import com.dstakhanov.info.di.WorkerModule
 import dagger.BindsInstance
 import dagger.Component
 
@@ -19,9 +19,7 @@ interface ApplicationComponent {
     @Component.Factory
     interface Factory {
 
-        fun create(
-            @BindsInstance application: Application
-        ): ApplicationComponent
+        fun create(): ApplicationComponent
     }
 
 

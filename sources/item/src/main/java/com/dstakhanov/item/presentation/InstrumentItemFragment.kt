@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.dstakhanov.findealscommithistory.R
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemBinding
-import com.dstakhanov.app.InstrumentApp
-import com.dstakhanov.app.ViewModelFactory
+import com.dstakhanov.item.R
+import com.dstakhanov.item.databinding.FragmentInstrumentItemBinding
+import com.dstakhanov.item.di.ItemComponent
 import com.dstakhanov.item.presentation.adapters.InstrumentItemListAdapter
+import com.dstakhanov.utils.ViewModelFactory
 import javax.inject.Inject
 
 class InstrumentItemFragment : Fragment() {
@@ -28,11 +28,9 @@ class InstrumentItemFragment : Fragment() {
 
 
     @Inject
-    lateinit var viewModelFactory: com.dstakhanov.app.ViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy {
-        (requireActivity().application as com.dstakhanov.app.InstrumentApp).component
-    }
+    private lateinit var component : ItemComponent
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -55,7 +53,7 @@ class InstrumentItemFragment : Fragment() {
         setupRecyclerView()
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(InstrumentItemViewModel::class.java)
-        viewModel.instrumentList.observe(this) {
+        viewModel.instrumentList.observe(viewLifecycleOwner) {
             instrumentListAdapter.submitList(it)
         }
         binding.buttonAddInstrumentItem.setOnClickListener {
@@ -86,12 +84,12 @@ class InstrumentItemFragment : Fragment() {
             instrumentListAdapter = InstrumentItemListAdapter()
             adapter = instrumentListAdapter
             recycledViewPool.setMaxRecycledViews(
-                com.dstakhanov.item.presentation.adapters.InstrumentItemListAdapter.VIEW_TYPE_ENABLED,
-                com.dstakhanov.item.presentation.adapters.InstrumentItemListAdapter.MAX_POOL_SIZE
+                InstrumentItemListAdapter.VIEW_TYPE_ENABLED,
+                InstrumentItemListAdapter.MAX_POOL_SIZE
             )
             recycledViewPool.setMaxRecycledViews(
-                com.dstakhanov.item.presentation.adapters.InstrumentItemListAdapter.VIEW_TYPE_DISABLED,
-                com.dstakhanov.item.presentation.adapters.InstrumentItemListAdapter.MAX_POOL_SIZE
+                InstrumentItemListAdapter.VIEW_TYPE_DISABLED,
+                InstrumentItemListAdapter.MAX_POOL_SIZE
             )
         }
         setupLongClickListener()

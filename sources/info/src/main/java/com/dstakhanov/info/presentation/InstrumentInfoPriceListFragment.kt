@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentInfoPriceListBinding
-import com.dstakhanov.findealscommithistory.presentation.InstrumentApp
-import com.dstakhanov.findealscommithistory.presentation.ViewModelFactory
+import com.dstakhanov.info.databinding.FragmentInstrumentInfoPriceListBinding
+import com.dstakhanov.info.di.InfoComponent
+
 import com.dstakhanov.info.presentation.adapters.InstrumentInfoAdapter
+import com.dstakhanov.utils.ViewModelFactory
 import javax.inject.Inject
 
 class InstrumentInfoPriceListFragment : Fragment() {
@@ -25,9 +26,7 @@ class InstrumentInfoPriceListFragment : Fragment() {
     private val binding: FragmentInstrumentInfoPriceListBinding
         get() = _binding ?: throw RuntimeException("FragmentInstrumentInfoPriceListBinding is null")
 
-    private val component by lazy {
-        (requireActivity().application as InstrumentApp).component
-    }
+    private lateinit var component: InfoComponent
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -58,7 +57,7 @@ class InstrumentInfoPriceListFragment : Fragment() {
         binding.rvInstrumentPriceList.itemAnimator = null
         infoViewModel =
             ViewModelProvider(this, viewModelFactory)[InstrumentInfoViewModel::class.java]
-        infoViewModel.instrumentInfoList.observe(this) {
+        infoViewModel.instrumentInfoList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }

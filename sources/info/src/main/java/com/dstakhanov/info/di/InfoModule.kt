@@ -5,7 +5,7 @@ import com.dstakhanov.api.ApiFactory
 import com.dstakhanov.api.ApiService
 import com.dstakhanov.core.AppDatabase
 import com.dstakhanov.core.info.InstrumentInfoDao
-import com.dstakhanov.core.info.InstrumentInfoRepositoryImpl
+import com.dstakhanov.info.data.InstrumentInfoRepositoryImpl
 import com.dstakhanov.info.domain.InstrumentInfoRepository
 import dagger.Binds
 import dagger.Module

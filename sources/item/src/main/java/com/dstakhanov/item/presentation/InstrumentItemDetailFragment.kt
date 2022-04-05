@@ -12,12 +12,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.dstakhanov.findealscommithistory.R
-import com.dstakhanov.utils.DateUtility
-import com.dstakhanov.findealscommithistory.databinding.FragmentInstrumentItemDetailBinding
-import com.dstakhanov.app.InstrumentApp
-import com.dstakhanov.app.ViewModelFactory
 import com.dstakhanov.item.R
+import com.dstakhanov.item.databinding.FragmentInstrumentItemDetailBinding
+import com.dstakhanov.item.di.ItemComponent
+import com.dstakhanov.utils.DateUtility
+import com.dstakhanov.utils.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,13 +37,11 @@ class InstrumentItemDetailFragment : BottomSheetDialogFragment() {
     private var instrumentItemId: Int = com.dstakhanov.item.domain.InstrumentItem.UNDEFINED_ID
 
     @Inject
-    lateinit var viewModelFactory: com.dstakhanov.app.ViewModelFactory
-    @Inject
-    lateinit var dateUtility: com.dstakhanov.utils.DateUtility
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private val component by lazy {
-        (requireActivity().application as com.dstakhanov.app.InstrumentApp).component
-    }
+    private lateinit var dateUtility: DateUtility
+
+    private lateinit var component: ItemComponent
 
     override fun onAttach(context: Context) {
         component.inject(this)

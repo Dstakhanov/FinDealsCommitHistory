@@ -12,6 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinDealsCommitHistory">
+        <activity
+            android:name="com.dstakhanov.main.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.FinDealsCommitHistory.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="androidx.work.WorkManagerInitializer"
