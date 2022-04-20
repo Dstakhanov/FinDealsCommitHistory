@@ -8,3 +8,12 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FinDealsCommitHistory"
 include ':app'
+include ':sources:info'
+include ':sources:item'
+include ':sources:portfolio'
+include ':sources:reports'
+include ':sources:core'
+include ':sources:utils'
+include ':sources:network'
+include ':sources:main'
+include ':sources:navigation'

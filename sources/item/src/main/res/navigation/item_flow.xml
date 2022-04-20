@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_flow"
+    app:startDestination="@id/item_list">
+    <fragment
+        android:id="@+id/item_list"
+        android:name="com.dstakhanov.item.presentation.InstrumentItemFragment"
+        android:label="@string/nav_label_item_fragment"
+        tools:layout="@layout/fragment_instrument_item">
+        <action
+            android:id="@+id/action_instrument_item_list_to_instrument_item_detail_fragment"
+            app:destination="@id/item_detail" />
+    </fragment>
+    <dialog
+        android:id="@+id/item_detail"
+        android:name="com.dstakhanov.item.presentation.InstrumentItemDetailFragment"
+        android:label="@string/nav_label_item_detail_fragment"
+        tools:layout="@layout/fragment_instrument_item_detail">
+        <argument
+            android:name="instrumentItemId"
+            app:argType="integer" />
+        <argument
+            android:name="screenMode"
+            app:argType="string" />
+    </dialog>
+</navigation>

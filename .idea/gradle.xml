@@ -12,6 +12,16 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/sources" />
+            <option value="$PROJECT_DIR$/sources/core" />
+            <option value="$PROJECT_DIR$/sources/info" />
+            <option value="$PROJECT_DIR$/sources/item" />
+            <option value="$PROJECT_DIR$/sources/main" />
+            <option value="$PROJECT_DIR$/sources/navigation" />
+            <option value="$PROJECT_DIR$/sources/network" />
+            <option value="$PROJECT_DIR$/sources/portfolio" />
+            <option value="$PROJECT_DIR$/sources/reports" />
+            <option value="$PROJECT_DIR$/sources/utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

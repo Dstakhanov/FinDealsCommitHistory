@@ -39,6 +39,12 @@
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/menu/main.xml" value="0.25" />
         <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20185185185185187" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/item/src/main/res/layout/fragment_instrument_item.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/main/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/main/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/main/src/main/res/layout/fragment_start.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/main/src/main/res/layout/nav_header_main.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/79268/AndroidStudioProjects/FinDealsCommitHistory/sources/reports/src/main/res/layout/fragment_report.xml" value="0.21467391304347827" />
       </map>
     </option>
   </component>

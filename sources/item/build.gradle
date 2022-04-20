@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.dstakhanov.item"
+        minSdk 27
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+apply from: "$project.rootDir/scripts/deps_versions.gradle"
+
+dependencies {
+
+    implementation androidcore
+    implementation appcompat
+    implementation constraintlayout
+
+    implementation project(':sources:core')
+    implementation project(':sources:navigation')
+    implementation project(':sources:utils')
+
+    implementation dagger
+    kapt daggerCompiler
+
+    implementation viewModel
+    implementation material
+
+    implementation coroutinesDependencies.values()
+    implementation navigationDependencies.values()
+    implementation roomDependencies.values()
+    testImplementation junit
+    androidTestImplementation testjunit
+    androidTestImplementation espresso
+}
