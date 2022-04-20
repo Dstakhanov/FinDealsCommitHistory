@@ -20,13 +20,13 @@ class WithoutTabs(config: Config = Config.empty) : Rule(config) {
     override val issue = Issue(
         "WithoutTabs",
         Severity.Style,
-        "Проверить есть ли Tab в файлах",
+        "Checks Tab in files",
         Debt.FIVE_MINS
     )
 
     fun findTabs(file: KtFile) {
         file.forEachDescendantOfType<PsiWhiteSpace> {
-            if (it.isTab()) report(CodeSmell(issue, Entity.from(it), "Tab символ используется"))
+            if (it.isTab()) report(CodeSmell(issue, Entity.from(it), "Tab is here!"))
         }
     }
 

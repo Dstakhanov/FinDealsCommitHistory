@@ -34,12 +34,12 @@ class WrongAlertDialogDetector : Detector(), Detector.UastScanner {
     companion object {
 
         private const val DETECTOR_ID = "WrongAlertDialogUsage"
-        private const val DESCRIPTION = "Использовать необходимо AlertDialog из androidx.appcompat.app"
+        private const val DESCRIPTION = "you need to use AlertDialog from androidx.appcompat.app"
         private const val EXPLANATION =
-            "AlertDialog из androidx.appcompat.app имеет более широкий фунционал"
+            "AlertDialog from androidx.appcompat.app has more functionality"
         private const val PRIORITY = 6
         private const val WRONG_IMPORT_ANDROID_ALERT_DIALOG = "android.app.AlertDialog"
-        private const val REPORT_MESSAGE = "Нельзя использовать $WRONG_IMPORT_ANDROID_ALERT_DIALOG"
+        private const val REPORT_MESSAGE = "Prohibited to use $WRONG_IMPORT_ANDROID_ALERT_DIALOG"
 
         val ISSUE = Issue.create(
             DETECTOR_ID,

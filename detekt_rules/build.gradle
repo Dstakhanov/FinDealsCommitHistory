@@ -1,9 +1,12 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    def versionsKotlin = '1.6.10'
-    def versionsDetekt = '1.19.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versionsKotlin"
-    implementation "io.gitlab.arturbosch.detekt:detekt-api:$versionsDetekt"
-    implementation "io.gitlab.arturbosch.detekt:detekt-cli:$versionsDetekt"
+
+    def detektVersion = '1.17.1'
+    compileOnly "io.gitlab.arturbosch.detekt:detekt-api:$detektVersion"
+    testImplementation "io.gitlab.arturbosch.detekt:detekt-api:$detektVersion"
+    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:$detektVersion") {
+        exclude group: "org.assertj", module: "assertj-core"
+        exclude group: "org.spekframework.spek2", module: "spek-dsl-jvm"
+    }
 }

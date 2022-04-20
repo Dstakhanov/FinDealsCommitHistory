@@ -47,7 +47,7 @@ class ReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(ReportViewModel::class.java)
+                ViewModelProvider(this, viewModelFactory).get(ReportViewModel::class.java)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
